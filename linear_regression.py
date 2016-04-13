@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-import numpy as np
 from sklearn.feature_extraction.text import TfidfVectorizer
 from pandas import DataFrame
 from scipy.sparse import hstack
