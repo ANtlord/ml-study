@@ -1,6 +1,5 @@
 #!/usr/bin/env python
 import pandas
-from sklearn import cross_validation
 from sklearn.cross_validation import KFold, cross_val_score
 from sklearn.ensemble import RandomForestRegressor
 
@@ -16,7 +15,7 @@ if __name__ == '__main__':
     for i in range(1, 50):
         knr = RandomForestRegressor(i, random_state=1)
         kf = KFold(len(target), 5, shuffle=True, random_state=1)
-        scores = cross_validation.cross_val_score(estimator=knr, X=data, y=target, scoring='r2', cv=kf)
+        scores = cross_val_score(estimator=knr, X=data, y=target, scoring='r2', cv=kf)
         accuracy = scores.mean()
         if accuracy > 0.52:
             break
