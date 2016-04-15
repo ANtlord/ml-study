@@ -18,12 +18,10 @@ if __name__ == '__main__':
         if sum(pca.explained_variance_ratio_) > 0.9:
             break
 
-    # answer(i, 'pca_1.txt')
-    qwe = pca.transform(X_train)
-    pearson_c = np.corrcoef([qwe[:, 0], data_indexes['^DJI']])[1, 0]
-    import ipdb; ipdb.set_trace()
-    # answer(pearson_c, 'pca_2.txt')
+    answer(i, 'pca_1.txt')
+    transformed_features = pca.transform(X_train)
+    pearson_c = np.corrcoef([transformed_features[:, 0], data_indexes['^DJI']])[1, 0]
+    answer(pearson_c, 'pca_2.txt')
 
-    total_feature_values = np.array([data_train.values[:, x].sum() for x in range(1, data_train.shape[1])])
-    index = max(enumerate(pca.components_[0] / total_feature_values), key=lambda x: x[1])[0]
+    index = np.argmax(pca.components_[0])
     answer(data_train.keys()[1:][index], 'pca_3.txt')
